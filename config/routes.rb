@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   end
 
   resources :tweets, expect: [:edit, :update]
-
   resources :profiles
 
   devise_for :users
