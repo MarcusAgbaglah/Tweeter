@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   resources :tweets, expect: [:edit, :update]
 
+  resources :profiles
+
   devise_for :users
   root to: "tweets#index"
 end
