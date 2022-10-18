@@ -1,14 +1,15 @@
 class TweetsController < ApplicationController
   before_action :authenticate_user!
+
   def index
     @tweet = Tweet.new
-    @tweets = Tweet.all.order(created_at: :asc)
+    @tweets = Tweet.all.order(created_at: :desc)
   end
 
   def create
     @tweet = Tweet.new(tweet_params)
     @tweet.user = current_user
-    
+
     respond_to do |format|
       if @tweet.save
         format.turbo_stream
