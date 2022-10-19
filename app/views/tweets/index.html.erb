@@ -2,6 +2,16 @@
   <%= render "form" %>
 </div>
 
+<div id="empty">
+  <%= turbo_frame_tag Tweet.new do %>
+    <% if Tweet.all.none? %>
+      <%= render "empty" %>
+    <% end %>
+  <% end %>
+</div>
+
 <%= turbo_frame_tag "tweets", class: "divide-y" do %>
-  <%= render @tweets %>
+  <% @tweets.each do |tweet| %>
+    <%= render partial: "tweets/#{tweet.tweet_type}", locals: {tweet: tweet} %>
+  <% end %>
 <% end %>
